@@ -14,7 +14,7 @@ DOWNLOAD_DIR = "/tmp/Downloads"
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
 INPUT_CSV = "20-30k.csv"
-OUTPUT_CSV = "/tmp/myoutput.csv"
+OUTPUT_CSV = "/tmp/myoutput1.csv"
 BATCH_SIZE = 500  # Number of rows per batch
 
 def log_debug(msg):
