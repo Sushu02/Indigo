@@ -1,0 +1,354 @@
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+
+    body {
+        margin: 12px 4px;
+    }
+
+    .wrapperTable {
+        border: 2px solid #000;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        max-width: 960px;
+        margin: 20px auto;
+    }
+
+    .thead {
+        border-bottom: 1px dashed #000;
+        padding-bottom: 12px;
+    }
+
+    .th-center {
+        text-align: center;
+        padding: 4px 6px;
+    }
+
+    .th-left {
+        text-align: left;
+        padding: 4px 6px;
+    }
+
+    .tfoot {
+        vertical-align: bottom;
+        text-decoration: underline;
+        padding-bottom: 12px;
+    }
+
+    .innertable {
+        border-top: 1px solid #000;
+        white-space: nowrap;
+    }
+
+        .innertable td {
+            border-bottom: 1px solid #000;
+            border-left: 1px solid #000;
+            padding: 4px 6px;
+            vertical-align: bottom;
+        }
+
+            .innertable td:first-child {
+                border-left: 0;
+                width: 50%
+            }
+
+    .header-row td {
+        font-weight: bold;
+        text-align: center;
+        background: #f2f2f2;
+    }
+
+    .align-right {
+        text-align: right;
+    }
+
+    .footer-row td {
+        font-weight: bold;
+        background: #f2f2f2;
+    }
+
+    .innertable td.borderStyleNone {
+        padding: 0;
+        min-width: 146px;
+        text-align: right;
+    }
+
+        .innertable td.borderStyleNone td {
+            border-left: 0;
+            border-bottom: 0;
+            padding: 4px 6px;
+        }
+
+    .innertable td.borderStyle {
+        padding: 0;
+        min-width: 146px;
+    }
+
+        .innertable td.borderStyle td {
+            border-left: 0;
+            border-bottom: 0;
+            border-top: 1px solid #000;
+            padding: 10px 0px;
+        }
+
+    .rightbrTD {
+        border-left: 1px solid #000 !important;
+        width: 66px;
+    }
+
+    .cnd-note {
+        font-size: 13px;
+        line-height: 22px;
+        padding-bottom: 22px;
+        padding-top: 22px;
+        height: 120px;
+    }
+
+    .credit-note {
+        font-size: 14px;
+        line-height: 22px;
+        padding-bottom: 12px;
+        padding-top: 20px;
+    }
+
+    .threeCols {
+        width: 33.33%;
+        padding: 0 10px;
+        vertical-align: top;
+    }
+
+    .company-detail {
+        padding-top: 10px;
+        padding-bottom: 0;
+    }
+
+        .company-detail span {
+            display: block;
+            padding: 0 0;
+            font-size: 13px;
+        }
+
+    address {
+        font-style: normal;
+        padding: 0 0;
+        margin-bottom: 0 !important;
+        font-size: 13px;
+    }
+
+    .company-name {
+        font-weight: bold;
+        font-size: 18px !important;
+    }
+
+    .indigoLogo {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+    }
+
+    .invoiceNote {
+        padding-top: 10px;
+    }
+
+    .InvoiceSectionRight {
+        width: 33.33%;
+        padding: 5px 10px;
+    }
+
+    .tableHeader {
+        margin-bottom: 15px;
+        margin-left: 5px;
+    }
+
+    .currency {
+        font-size: 14px !important;
+        padding-bottom: 5px;
+        padding-right: 20%;
+        text-align: right;
+    }
+
+    .tableHeader td {
+        padding: 5px 0;
+    }
+
+    .indigodetail {
+        padding-left: 5px;
+        padding-bottom: 20px;
+    }
+
+    .table_data {
+        padding-bottom: 15px;
+    }
+</style>
+<style media="print" type="text/css">
+    .tableHeader td {
+        font-size: 14px;
+    }
+
+    .wrapperTable {
+        max-width: 595px;
+    }
+
+    .print_font {
+        font-size: 12px;
+    }
+</style>
+<!-- Invoice Wrapper -->
+<!-- End Wrapper -->
+
+<!DOCTYPE html>
+
+<!--[if lt IE 6]>      <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7 lt-ie6"> <![endif]-->
+<!--[if IE 6]>         <html class="no-js lt-ie10 lt-ie9 lt-ie8 lt-ie7 ie6"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie10 lt-ie9 lt-ie8 ie7"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie10 lt-ie9 ie8"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js lt-ie10 ie9"> <![endif]-->
+<!--[if gt IE 9]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8"/>
+<meta content="noindex, nofollow" name="robots">
+<meta content="en-US" name="accept-language"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<title>Invoice</title>
+<meta content="IndiGo a leading Domestic &amp; International Indian Airlines which offers always cheap affordable, on time and hassle free operation at the Low cost, Discount Airline Tickets, Cheap flights to India &amp; abroad, Online Flight Booking to India, Bangkok - Thailand, Dubai - United Arab Emirates and Singapore, Budget Airlines India and Indian airlines with lowest air fares in India &amp; Abroad." name="description">
+<meta content="Domestic &amp; International Indian airlines, Airline Tickets India, Bangkok - Thailand, Dubai - UAE and Singapore, Airline Reservation, Budget Airlines India, low air fare, lowest air fares, flight bookings India, Airline Booking, Cheap flights abroad, cheap airline tickets, Cheap Airfares, airline tickets India, airline tickets international, domestic Discount travel Airfares" name="keywords"/>
+<meta content="user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="/Content/wnd/images/apple-touch-icon.png" rel="apple-touch-icon" sizes="152x152"/>
+<link href="/Content/wnd/images/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="/Content/wnd/images/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png"/>
+<link href="/content/css/styles?v=urMgOB0fLbrS6c_954T6P71zn_1emmauyGVZMIse75I1" rel="stylesheet">
+<!--[if IE 6]>
+            <link href="/content/css/ie6?v=" rel="stylesheet"/>
+
+        <![endif]-->
+<link href="/content/css/styleNG?v=64hnjuDs58luhi6bIzrqKnfZfT6en5TSidT4mrxu-Vw1" rel="stylesheet">
+
+
+
+
+
+
+<!-- New Webtrekk Changes: Added By Ritu/Sanjay on "6 May 2015"-->
+
+<!-- New Webtrekk Changes: Added By Ritu/Sanjay on "12 May 2015"--><!-- New Webtrekk ABTest Changes: Added By Sanjay on "13 May 2015"-->
+<!-- Bootstrap core CSS -->
+<!-- jquery-ui core CSS -->
+<!-- font-awesome CSS -->
+<link href="/Content/wnd/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+<!-- Site Theme CSS -->
+<link href="/Content/wnd/css/common.css" rel="stylesheet" type="text/css"/>
+<link href="/Content/wnd/css/master.css" rel="stylesheet" type="text/css"/>
+<link href="/Content/wnd/css/responsive.css" rel="stylesheet" type="text/css"/>
+<link href="/Content/wnd/css/colorTheme.css" rel="stylesheet">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+        <script src="/Scripts/wnd/js/html5shiv.min.js"></script>
+        <script src="/Scripts/wnd/js/respond.min.js"></script>
+      <![endif]-->
+
+<!--if (string.IsNullOrEmpty(UKey))
+        {
+            if (currentPageURL.Contains("book.goindigo.in"))//For Live
+            {
+                <script src="//assets.adobedtm.com/0e123c966ba7/0af4e2ba061e/launch-e5ecea4f846c.min.js"></script>
+            }
+            else////For Staging
+            {-->
+<!--<script src="//assets.adobedtm.com/0e123c966ba7/0af4e2ba061e/launch-3242fe841145-development.min.js"></script>
+            }
+        }-->
+
+</link></link></link></meta></meta></head>
+<body class="">
+
+
+
+
+
+<!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+<!-- Add your site or application content here -->
+<div class="push containerpage_main">
+
+
+<div class="pageHeight">
+<div style="text-align:center">No Invoice.</div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--For 6E Upgrade Pop Up-->
+
+
+
+<!-- core JavaScript and jquery UI -->
+
+
+
+
+</body>
+</html>
