@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout repo
       uses: actions/checkout@v3
 
     - name: Set up Python
@@ -35,4 +35,4 @@ jobs:
 
     - name: Run Invoice Script
       run: |
-        python app.py --input 1-10000.csv --output myoutput.csv
+        python main.py --input 1-10000.csv --output myoutput.csv
