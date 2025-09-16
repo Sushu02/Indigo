@@ -190,21 +190,52 @@ def process_invoice(row):
     finally:
         driver.quit()
 
+def debug_wrapper(args):
+    index, row, total_rows = args
+    print(f"Processing row {index} / {total_rows} -> filehash: {row['filehash']}")
+    result = process_invoice(row)
+    print(f"Completed row {index} / {total_rows} -> status: {result[2]}")
+    return result
+
 
 if __name__ == "__main__":
     # Read CSV
     with open(INPUT_CSV, 'r') as f:
         reader = list(csv.DictReader(f))
-    
-    # Use a pool of processes
-    pool_size = min(cpu_count(), 4)  # Adjust according to your system
+
+    total_rows = len(reader)
+    print(f"Total rows to process: {total_rows}")
+
+    # Pass total_rows to worker via arguments
+    indexed_rows = [(i+1, row, total_rows) for i, row in enumerate(reader)]
+
+    pool_size = min(cpu_count(), 4)
     with Pool(pool_size) as pool:
-        results = pool.map(process_invoice, reader)
-    
+        results = pool.map(debug_wrapper, indexed_rows)
+
     # Write output CSV
     with open(OUTPUT_CSV, 'w', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(["filehash", "filename", "status"])
         writer.writerows(results)
-    
+
     print("Processing complete.")
+
+    
+# if __name__ == "__main__":
+#     # Read CSV
+#     with open(INPUT_CSV, 'r') as f:
+#         reader = list(csv.DictReader(f))
+    
+#     # Use a pool of processes
+#     pool_size = min(cpu_count(), 4)  # Adjust according to your system
+#     with Pool(pool_size) as pool:
+#         results = pool.map(process_invoice, reader)
+    
+#     # Write output CSV
+#     with open(OUTPUT_CSV, 'w', newline='') as f:
+#         writer = csv.writer(f)
+#         writer.writerow(["filehash", "filename", "status"])
+#         writer.writerows(results)
+    
+#     print("Processing complete.")
