@@ -38,5 +38,5 @@ jobs:
 
     - name: Run invoice script
       run: |
-        python deal.py
+        run: python app.py --input 1-10000.csv --output myoutput.csv
 
