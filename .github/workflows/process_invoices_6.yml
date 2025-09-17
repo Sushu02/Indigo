@@ -1,57 +1,17 @@
-name: Process Invoices
+- name: Run invoice script and package output
+  run: |
+    mkdir -p outputs
+    TIMESTAMP=$(date +"%Y%m%d%H%M%S")
+    OUTPUT_CSV="outputs/myoutput_${TIMESTAMP}.csv"
+    ZIP_FILE="outputs/invoice_output_${TIMESTAMP}.zip"
 
-on:
-  workflow_dispatch:    # Manual trigger
-  schedule:
-    - cron: "0 1 * * *"    # Optional: Daily at 1 AM
+    echo "Processing input and saving output as $OUTPUT_CSV"
+    python main5.py --input 35.2-40k.csv --output $OUTPUT_CSV
 
-jobs:
-  invoice_job:
-    runs-on: ubuntu-latest
+    echo "Listing outputs directory to verify file was created:"
+    ls -l outputs/
 
-    steps:
-    - name: Checkout repo
-      uses: actions/checkout@v3
+    echo "Packaging output as ZIP file"
+    zip -j $ZIP_FILE $OUTPUT_CSV
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install chromedriver-autoinstaller selenium beautifulsoup4 PyPDF2
-
-    - name: Install Chrome
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y wget unzip xvfb libxi6 libatk1.0-0 libatk-bridge2.0-0 \
-            libcups2 libxss1 libgdk-pixbuf2.0-0 libnss3 libx11-xcb1 libxcomposite1 libxdamage1 \
-            libxrandr2 libgbm1 libpangocairo-1.0-0 fonts-liberation libgtk-3-0 libdrm2
-        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-        sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get install -f -y
-
-    - name: Run invoice script and package output
-      run: |
-        mkdir -p outputs
-        TIMESTAMP=$(date +"%Y%m%d%H%M%S")
-        OUTPUT_CSV="outputs/myoutput_${TIMESTAMP}.csv"
-        ZIP_FILE="outputs/invoice_output_${TIMESTAMP}.zip"
-    
-        echo "Running the invoice script..."
-        python main5.py --input 35.2-40k.csv --output $OUTPUT_CSV
-    
-        echo "Listing output directory after script run:"
-        ls -l outputs/
-    
-        if [ ! -f "$OUTPUT_CSV" ]; then
-          echo "ERROR: Output CSV file not found!"
-          exit 1
-        fi
-    
-        echo "Packaging output as ZIP file"
-        zip -j $ZIP_FILE $OUTPUT_CSV
-    
-        echo "::set-output name=zip-file::$ZIP_FILE"
+    echo "::set-output name=zip-file::$ZIP_FILE"
