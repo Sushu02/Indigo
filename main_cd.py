@@ -13,7 +13,7 @@ BASE_DIR = os.getenv("GITHUB_WORKSPACE", os.getcwd())
 DOWNLOAD_DIR = "/tmp/Downloads"
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
-INPUT_CSV = "5k-10k.csv"
+INPUT_CSV = "5-10k.csv"
 OUTPUT_CSV = "/tmp/myoutput2.csv"
 BATCH_SIZE = 500  # Number of rows per batch
 
