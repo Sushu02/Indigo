@@ -36,7 +36,17 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v3
 
-    - name: Run invoice script
-      run: python main_cd.py --input 5-10k.csv --output myoutput2.csv
+    - name: Run invoice script with dynamic output
+      run: |
+        TIMESTAMP=$(date +"%Y%m%d%H%M%S")
+        OUTPUT_FILE="myoutput_${TIMESTAMP}.csv"
+        echo "Output file: $OUTPUT_FILE"
+        python main_cd.py --input 5-10k.csv --output $OUTPUT_FILE
+        echo "::set-output name=output-file::$OUTPUT_FILE"
 
+    - name: Upload output CSV
+      uses: actions/upload-artifact@v4
+      with:
+        name: invoice-output
+        path: ${{ steps.run_invoice_script.outputs.output-file }}
 
