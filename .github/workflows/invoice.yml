@@ -36,8 +36,6 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v3
 
-    - name: Run invoice script
-      run: python main_ci.py --input 1-5k.csv --output myoutput1.csv
     
     - name: Run invoice script with dynamic output
       run: |
