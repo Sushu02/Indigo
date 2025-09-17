@@ -13,7 +13,7 @@ BASE_DIR = os.getenv("GITHUB_WORKSPACE", os.getcwd())
 DOWNLOAD_DIR = "/tmp/Downloads"
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
-INPUT_CSV = "30-50500k.csv"
+INPUT_CSV = "5k-10k.csv"
 OUTPUT_CSV = "/tmp/myoutput2.csv"
 BATCH_SIZE = 500  # Number of rows per batch
 
@@ -126,22 +126,27 @@ if __name__ == "__main__":
     total_rows = len(reader)
     log_debug(f"Total rows to process: {total_rows}")
     
-    all_results = []
+    output_exists = os.path.exists(OUTPUT_CSV)
 
-    for batch_index, batch_rows in enumerate(chunk_list(reader, BATCH_SIZE), start=1):
-        log_debug(f"Starting batch {batch_index} with {len(batch_rows)} rows")
-        
-        indexed_rows = [(i+1, row, total_rows) for i, row in enumerate(batch_rows)]
-        pool_size = min(cpu_count(), 4)
-        with Pool(pool_size) as pool:
-            results = pool.map(debug_wrapper, indexed_rows)
-        
-        all_results.extend(results)
-        log_debug(f"Completed batch {batch_index}")
-    
-    with open(OUTPUT_CSV, 'w', newline='') as f:
-        writer = csv.writer(f)
-        writer.writerow(["filehash", "filename", "status"])
-        writer.writerows(all_results)
-    
+    with open(OUTPUT_CSV, 'a', newline='') as f_out:
+        writer = csv.writer(f_out)
+        if not output_exists:
+            writer.writerow(["filehash", "filename", "status"])  # Write header only once
+
+        for batch_index, batch_rows in enumerate(chunk_list(reader, BATCH_SIZE), start=1):
+            log_debug(f"Starting batch {batch_index} with {len(batch_rows)} rows")
+
+            indexed_rows = [(i+1, row, total_rows) for i, row in enumerate(batch_rows)]
+            pool_size = min(cpu_count(), 4)
+            
+            with Pool(pool_size) as pool:
+                result_iterator = pool.imap_unordered(debug_wrapper, indexed_rows)
+
+                for result in result_iterator:
+                    writer.writerow(result)
+                    f_out.flush()  # Ensure data is written immediately
+                    log_debug(f"[WRITTEN] {result[0]} -> {result[2]}")
+
+            log_debug(f"Completed batch {batch_index}")
+
     log_debug("Processing complete.")
