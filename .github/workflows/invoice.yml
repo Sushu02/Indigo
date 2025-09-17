@@ -38,4 +38,10 @@ jobs:
 
     - name: Run invoice script
       run: python main_ci.py --input 1-5k.csv --output myoutput1.csv
+    
+    - name: Upload output CSV
+      uses: actions/upload-artifact@v3
+      with:
+        name: invoice-output
+        path: myoutput1.csv  
 
