@@ -31,15 +31,15 @@ jobs:
 
     - name: Run invoice processing script
       run: |
-        mkdir -p outputs
         TIMESTAMP=$(date +"%Y%m%d%H%M%S")
-        OUTPUT_CSV="outputs/myoutput_${TIMESTAMP}.csv"
+        OUTPUT_CSV="myoutput_${TIMESTAMP}.csv"
         echo "Processing input and saving output to $OUTPUT_CSV"
         python main5.py --input 35.2-40k.csv --output $OUTPUT_CSV
         echo "Processing complete. Generated: $OUTPUT_CSV"
+        echo "OUTPUT_CSV=$OUTPUT_CSV" >> $GITHUB_ENV
 
     - name: Upload output CSV as artifact
       uses: actions/upload-artifact@v4
       with:
         name: invoice-output
-        path: outputs/myoutput_*.csv
+        path: ${{ env.OUTPUT_CSV }}
