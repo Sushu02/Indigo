@@ -137,7 +137,7 @@ if __name__ == "__main__":
             log_debug(f"Starting batch {batch_index} with {len(batch_rows)} rows")
 
             indexed_rows = [(i+1, row, total_rows) for i, row in enumerate(batch_rows)]
-            pool_size = min(cpu_count(), 10)
+            pool_size = min(cpu_count(), 15)
             
             with Pool(pool_size) as pool:
                 result_iterator = pool.imap_unordered(debug_wrapper, indexed_rows)
