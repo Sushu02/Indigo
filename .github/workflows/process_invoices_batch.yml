@@ -37,4 +37,4 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Run invoice script
-      run: python main_ci.py --input 20-30k.csv --output myoutput1.csv
+      run: python main.py --input 10k-15.2k.csv --output myoutput3.csv
