@@ -13,8 +13,12 @@ BASE_DIR = os.getenv("GITHUB_WORKSPACE", os.getcwd())
 DOWNLOAD_DIR = "/tmp/Downloads"
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
+from datetime import datetime
+timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+
 INPUT_CSV = "30-35.2k.csv"
-OUTPUT_CSV = "/tmp/myoutput6.csv"
+OUTPUT_CSV = os.path.join(os.environ.get("GITHUB_WORKSPACE", "."), f"myoutput_{timestamp}.csv")
+print(f"Generated file: {OUTPUT_CSV}")
 BATCH_SIZE = 500  # Number of rows per batch
 
 def log_debug(msg):
