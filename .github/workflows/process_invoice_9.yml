@@ -41,7 +41,7 @@ jobs:
         TIMESTAMP=$(date +"%Y%m%d%H%M%S")
         OUTPUT_FILE="myoutput_${TIMESTAMP}.csv"
         echo "Output file: $OUTPUT_FILE"
-        python main_cd.py --input 50-55k.csv --output $OUTPUT_FILE
+        python main8.py --input 50-55k.csv --output $OUTPUT_FILE
         echo "::set-output name=output-file::$OUTPUT_FILE"
 
     - name: Upload output CSV
