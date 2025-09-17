@@ -35,8 +35,9 @@ jobs:
 
     - name: Run invoice processing script
       run: |
+        mkdir -p outputs   # ✅ creates folder if it doesn't exist
         TIMESTAMP=$(date +"%Y%m%d%H%M%S")
-        OUTPUT_CSV="myoutput_${TIMESTAMP}.csv"
+        OUTPUT_CSV="outputs/myoutput_${TIMESTAMP}.csv"
         echo "Output file will be: $OUTPUT_CSV"
         python main5.py --input 35.2-40k.csv --output $OUTPUT_CSV
         echo "Finished processing. Generated file: $OUTPUT_CSV"
@@ -45,4 +46,6 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: invoice-output
-        path: myoutput_*.csv
+        path: outputs/myoutput_*.csv
+   
+
