@@ -13,6 +13,7 @@ BASE_DIR = os.getenv("GITHUB_WORKSPACE", os.getcwd())
 DOWNLOAD_DIR = "/tmp/Downloads"
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
+timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
 INPUT_CSV = "35.2-40k.csv"
 OUTPUT_CSV = os.path.join(os.environ.get("GITHUB_WORKSPACE", "."), f"myoutput_{timestamp}.csv")
 print(f"Generated file: {OUTPUT_CSV}")
