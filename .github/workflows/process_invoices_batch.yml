@@ -2,8 +2,8 @@ name: Process Invoices
 
 on:
   workflow_dispatch:   # manual trigger
-  schedule:
-    - cron: "0 1 * * *"   # run daily at 1 AM
+  # schedule:
+    # - cron: "0 1 * * *"   # run daily at 1 AM
 
 jobs:
   invoice_job:
